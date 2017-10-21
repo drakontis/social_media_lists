@@ -5,6 +5,11 @@ describe SocialNetwork do
     it { is_expected.to validate_presence_of :name }
   end
 
+  describe 'Associations' do
+    it { is_expected.to have_many :person_social_networks }
+    it { is_expected.to have_many :people                 }
+  end
+
   describe '#new' do
     it 'should create a new social network' do
       social_network = SocialNetwork.new(name: 'Facebook')

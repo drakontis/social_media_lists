@@ -3,7 +3,13 @@ require 'rails_helper'
 describe Person do
   describe 'Validations' do
     it { is_expected.to validate_presence_of :first_name }
-    it { is_expected.to validate_presence_of :last_name }
+    it { is_expected.to validate_presence_of :last_name  }
+  end
+
+  describe 'Associations' do
+    it { is_expected.to have_many :person_social_networks }
+    it { is_expected.to have_many :social_networks        }
+    it { is_expected.to have_many :federal_legislators    }
   end
 
   describe '#new' do

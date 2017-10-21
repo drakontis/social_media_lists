@@ -11,10 +11,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171021142815) do
+ActiveRecord::Schema.define(version: 20171021164412) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "federal_legislators", force: :cascade do |t|
+    t.integer "person_id", null: false
+  end
+
+  add_index "federal_legislators", ["person_id"], name: "federal_legislators_person_idx", using: :btree
 
   create_table "people", force: :cascade do |t|
     t.string   "first_name", null: false
@@ -43,6 +49,7 @@ ActiveRecord::Schema.define(version: 20171021142815) do
 
   add_index "social_networks", ["name"], name: "social_networks_name_uidx", unique: true, using: :btree
 
+  add_foreign_key "federal_legislators", "people", name: "federal_legislators_person_id_fk"
   add_foreign_key "person_social_networks", "people", name: "person_social_networks_person_id_fk"
   add_foreign_key "person_social_networks", "social_networks", name: "person_social_networks_social_network_id_fk"
 end
