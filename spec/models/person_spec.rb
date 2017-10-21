@@ -12,6 +12,7 @@ describe Person do
     it { is_expected.to have_many :federal_legislators    }
     it { is_expected.to have_many :people_custom_lists    }
     it { is_expected.to have_many :custom_lists           }
+    it { is_expected.to have_many :posts                  }
   end
 
   describe '#new' do
