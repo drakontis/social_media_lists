@@ -17,13 +17,17 @@ ActiveRecord::Schema.define(version: 20171021171022) do
   enable_extension "plpgsql"
 
   create_table "custom_lists", force: :cascade do |t|
-    t.string "name", null: false
+    t.string   "name",       null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   add_index "custom_lists", ["name"], name: "custom_lists_name_uidx", unique: true, using: :btree
 
   create_table "federal_legislators", force: :cascade do |t|
-    t.integer "person_id", null: false
+    t.integer  "person_id",  null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   add_index "federal_legislators", ["person_id"], name: "federal_legislators_person_idx", using: :btree
@@ -36,8 +40,10 @@ ActiveRecord::Schema.define(version: 20171021171022) do
   end
 
   create_table "people_custom_lists", force: :cascade do |t|
-    t.integer "person_id",      null: false
-    t.integer "custom_list_id", null: false
+    t.integer  "person_id",      null: false
+    t.integer  "custom_list_id", null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   add_index "people_custom_lists", ["custom_list_id"], name: "people_custom_lists_custom_list_idx", using: :btree
