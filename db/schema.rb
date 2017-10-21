@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171021140025) do
+ActiveRecord::Schema.define(version: 20171021142815) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -23,4 +23,26 @@ ActiveRecord::Schema.define(version: 20171021140025) do
     t.datetime "updated_at"
   end
 
+  create_table "person_social_networks", force: :cascade do |t|
+    t.integer  "person_id",                null: false
+    t.integer  "social_network_id",        null: false
+    t.string   "person_social_network_id", null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "person_social_networks", ["person_id", "social_network_id"], name: "person_social_networks_person_social_network_uidx", unique: true, using: :btree
+  add_index "person_social_networks", ["person_id"], name: "person_social_networks_person_idx", using: :btree
+  add_index "person_social_networks", ["social_network_id"], name: "person_social_networks_social_network_idx", using: :btree
+
+  create_table "social_networks", force: :cascade do |t|
+    t.string   "name",       null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "social_networks", ["name"], name: "social_networks_name_uidx", unique: true, using: :btree
+
+  add_foreign_key "person_social_networks", "people", name: "person_social_networks_person_id_fk"
+  add_foreign_key "person_social_networks", "social_networks", name: "person_social_networks_social_network_id_fk"
 end
