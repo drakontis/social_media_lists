@@ -1,3 +1,15 @@
+# == Schema Information
+#
+# Table name: posts
+#
+#  id         :integer          not null, primary key
+#  person_id  :integer          not null
+#  body       :text             not null
+#  posted_at  :datetime         not null
+#  created_at :datetime
+#  updated_at :datetime
+#
+
 require 'rails_helper'
 
 describe SocialNetworks::Post do

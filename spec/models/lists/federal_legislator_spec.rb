@@ -1,3 +1,13 @@
+# == Schema Information
+#
+# Table name: federal_legislators
+#
+#  id         :integer          not null, primary key
+#  person_id  :integer          not null
+#  created_at :datetime
+#  updated_at :datetime
+#
+
 require 'rails_helper'
 
 describe Lists::FederalLegislator do

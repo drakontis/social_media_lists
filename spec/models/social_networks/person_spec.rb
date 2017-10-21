@@ -1,3 +1,14 @@
+# == Schema Information
+#
+# Table name: people
+#
+#  id         :integer          not null, primary key
+#  first_name :string           not null
+#  last_name  :string           not null
+#  created_at :datetime
+#  updated_at :datetime
+#
+
 require 'rails_helper'
 
 describe SocialNetworks::Person do

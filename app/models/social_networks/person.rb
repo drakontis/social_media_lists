@@ -1,3 +1,14 @@
+# == Schema Information
+#
+# Table name: people
+#
+#  id         :integer          not null, primary key
+#  first_name :string           not null
+#  last_name  :string           not null
+#  created_at :datetime
+#  updated_at :datetime
+#
+
 module SocialNetworks
   class Person < ActiveRecord::Base
     has_many :people_social_networks, class_name: 'SocialNetworks::PeopleSocialNetwork', dependent: :destroy

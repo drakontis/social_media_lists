@@ -1,3 +1,14 @@
+# == Schema Information
+#
+# Table name: people_custom_lists
+#
+#  id             :integer          not null, primary key
+#  person_id      :integer          not null
+#  custom_list_id :integer          not null
+#  created_at     :datetime
+#  updated_at     :datetime
+#
+
 require 'rails_helper'
 
 describe Lists::PeopleCustomList do
