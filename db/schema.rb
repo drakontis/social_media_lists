@@ -11,10 +11,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171021164412) do
+ActiveRecord::Schema.define(version: 20171021170153) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "custom_lists", force: :cascade do |t|
+    t.string "name", null: false
+  end
+
+  add_index "custom_lists", ["name"], name: "custom_lists_name_uidx", unique: true, using: :btree
 
   create_table "federal_legislators", force: :cascade do |t|
     t.integer "person_id", null: false
