@@ -10,6 +10,8 @@ describe Person do
     it { is_expected.to have_many :person_social_networks }
     it { is_expected.to have_many :social_networks        }
     it { is_expected.to have_many :federal_legislators    }
+    it { is_expected.to have_many :people_custom_lists    }
+    it { is_expected.to have_many :custom_lists           }
   end
 
   describe '#new' do
@@ -39,6 +41,22 @@ describe Person do
       person_social_network.save!
 
       expect(person.social_networks).to include social_network
+    end
+  end
+
+  describe '#custom_lists' do
+    it 'should return the custom lists' do
+      person = Person.new(first_name: 'John', last_name: 'Doe')
+      person.save!
+
+      custom_list = Lists::CustomList.new(name: 'state governor')
+      custom_list.save!
+
+      people_custom_list = Lists::PeopleCustomList.new(person: person, custom_list: custom_list)
+      people_custom_list.save
+
+      expect(person.people_custom_lists).to include people_custom_list
+      expect(person.custom_lists).to include custom_list
     end
   end
 end

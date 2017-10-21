@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171021170153) do
+ActiveRecord::Schema.define(version: 20171021171022) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -35,6 +35,15 @@ ActiveRecord::Schema.define(version: 20171021170153) do
     t.datetime "updated_at"
   end
 
+  create_table "people_custom_lists", force: :cascade do |t|
+    t.integer "person_id",      null: false
+    t.integer "custom_list_id", null: false
+  end
+
+  add_index "people_custom_lists", ["custom_list_id"], name: "people_custom_lists_custom_list_idx", using: :btree
+  add_index "people_custom_lists", ["person_id", "custom_list_id"], name: "people_custom_lists_person_custom_list_uidx", unique: true, using: :btree
+  add_index "people_custom_lists", ["person_id"], name: "people_custom_lists_person_idx", using: :btree
+
   create_table "person_social_networks", force: :cascade do |t|
     t.integer  "person_id",                null: false
     t.integer  "social_network_id",        null: false
@@ -56,6 +65,8 @@ ActiveRecord::Schema.define(version: 20171021170153) do
   add_index "social_networks", ["name"], name: "social_networks_name_uidx", unique: true, using: :btree
 
   add_foreign_key "federal_legislators", "people", name: "federal_legislators_person_id_fk"
+  add_foreign_key "people_custom_lists", "custom_lists", name: "people_custom_lists_custom_list_fk"
+  add_foreign_key "people_custom_lists", "people", name: "people_custom_lists_person_fk"
   add_foreign_key "person_social_networks", "people", name: "person_social_networks_person_id_fk"
   add_foreign_key "person_social_networks", "social_networks", name: "person_social_networks_social_network_id_fk"
 end
