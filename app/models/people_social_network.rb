@@ -1,4 +1,4 @@
-class PersonSocialNetwork < ActiveRecord::Base
+class PeopleSocialNetwork < ActiveRecord::Base
   belongs_to :person,         class_name: 'Person'
   belongs_to :social_network, class_name: 'SocialNetwork'
 

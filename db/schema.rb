@@ -50,7 +50,7 @@ ActiveRecord::Schema.define(version: 20171021171022) do
   add_index "people_custom_lists", ["person_id", "custom_list_id"], name: "people_custom_lists_person_custom_list_uidx", unique: true, using: :btree
   add_index "people_custom_lists", ["person_id"], name: "people_custom_lists_person_idx", using: :btree
 
-  create_table "person_social_networks", force: :cascade do |t|
+  create_table "people_social_networks", force: :cascade do |t|
     t.integer  "person_id",                null: false
     t.integer  "social_network_id",        null: false
     t.string   "person_social_network_id", null: false
@@ -58,9 +58,9 @@ ActiveRecord::Schema.define(version: 20171021171022) do
     t.datetime "updated_at"
   end
 
-  add_index "person_social_networks", ["person_id", "social_network_id"], name: "person_social_networks_person_social_network_uidx", unique: true, using: :btree
-  add_index "person_social_networks", ["person_id"], name: "person_social_networks_person_idx", using: :btree
-  add_index "person_social_networks", ["social_network_id"], name: "person_social_networks_social_network_idx", using: :btree
+  add_index "people_social_networks", ["person_id", "social_network_id"], name: "people_social_networks_person_social_network_uidx", unique: true, using: :btree
+  add_index "people_social_networks", ["person_id"], name: "people_social_networks_person_idx", using: :btree
+  add_index "people_social_networks", ["social_network_id"], name: "people_social_networks_social_network_idx", using: :btree
 
   create_table "social_networks", force: :cascade do |t|
     t.string   "name",       null: false
@@ -73,6 +73,6 @@ ActiveRecord::Schema.define(version: 20171021171022) do
   add_foreign_key "federal_legislators", "people", name: "federal_legislators_person_id_fk"
   add_foreign_key "people_custom_lists", "custom_lists", name: "people_custom_lists_custom_list_fk"
   add_foreign_key "people_custom_lists", "people", name: "people_custom_lists_person_fk"
-  add_foreign_key "person_social_networks", "people", name: "person_social_networks_person_id_fk"
-  add_foreign_key "person_social_networks", "social_networks", name: "person_social_networks_social_network_id_fk"
+  add_foreign_key "people_social_networks", "people", name: "people_social_networks_person_id_fk"
+  add_foreign_key "people_social_networks", "social_networks", name: "people_social_networks_social_network_id_fk"
 end

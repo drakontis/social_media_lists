@@ -6,7 +6,7 @@ describe SocialNetwork do
   end
 
   describe 'Associations' do
-    it { is_expected.to have_many :person_social_networks }
+    it { is_expected.to have_many :people_social_networks }
     it { is_expected.to have_many :people                 }
   end
 
@@ -29,7 +29,7 @@ describe SocialNetwork do
       social_network = SocialNetwork.new(name: 'Facebook')
       social_network.save
 
-      person_social_network = PersonSocialNetwork.new(person: person,
+      person_social_network = PeopleSocialNetwork.new(person: person,
                                                       social_network: social_network,
                                                       person_social_network_id: 'JohnDoe')
 

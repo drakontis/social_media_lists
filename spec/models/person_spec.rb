@@ -7,7 +7,7 @@ describe Person do
   end
 
   describe 'Associations' do
-    it { is_expected.to have_many :person_social_networks }
+    it { is_expected.to have_many :people_social_networks }
     it { is_expected.to have_many :social_networks        }
     it { is_expected.to have_many :federal_legislators    }
     it { is_expected.to have_many :people_custom_lists    }
@@ -34,11 +34,11 @@ describe Person do
       social_network = SocialNetwork.new(name: 'Facebook')
       social_network.save
 
-      person_social_network = PersonSocialNetwork.new(person: person,
+      people_social_network = PeopleSocialNetwork.new(person: person,
                                                       social_network: social_network,
                                                       person_social_network_id: 'JohnDoe')
 
-      person_social_network.save!
+      people_social_network.save!
 
       expect(person.social_networks).to include social_network
     end
