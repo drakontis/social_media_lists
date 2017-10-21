@@ -17,7 +17,7 @@ describe Lists::CustomList do
 
   describe '#people' do
     it 'should return the people' do
-      person = Person.new(first_name: 'John', last_name: 'Doe')
+      person = SocialNetworks::Person.new(first_name: 'John', last_name: 'Doe')
       person.save!
 
       custom_list = Lists::CustomList.new(name: 'state governor')

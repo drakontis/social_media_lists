@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe Person do
+describe SocialNetworks::Person do
   describe 'Validations' do
     it { is_expected.to validate_presence_of :first_name }
     it { is_expected.to validate_presence_of :last_name  }
@@ -17,7 +17,7 @@ describe Person do
 
   describe '#new' do
     it 'should create a new person' do
-      person = Person.new(first_name: 'John', last_name: 'Doe')
+      person = SocialNetworks::Person.new(first_name: 'John', last_name: 'Doe')
 
       person.save
 
@@ -29,15 +29,15 @@ describe Person do
 
   describe '#social_networks' do
     it 'should return the social networks' do
-      person = Person.new(first_name: 'John', last_name: 'Doe')
+      person = SocialNetworks::Person.new(first_name: 'John', last_name: 'Doe')
       person.save
 
-      social_network = SocialNetwork.new(name: 'Facebook')
+      social_network = SocialNetworks::SocialNetwork.new(name: 'Facebook')
       social_network.save
 
-      people_social_network = PeopleSocialNetwork.new(person: person,
-                                                      social_network: social_network,
-                                                      person_social_network_id: 'JohnDoe')
+      people_social_network = SocialNetworks::PeopleSocialNetwork.new(person: person,
+                                                                      social_network: social_network,
+                                                                      person_social_network_id: 'JohnDoe')
 
       people_social_network.save!
 
@@ -47,7 +47,7 @@ describe Person do
 
   describe '#custom_lists' do
     it 'should return the custom lists' do
-      person = Person.new(first_name: 'John', last_name: 'Doe')
+      person = SocialNetworks::Person.new(first_name: 'John', last_name: 'Doe')
       person.save!
 
       custom_list = Lists::CustomList.new(name: 'state governor')

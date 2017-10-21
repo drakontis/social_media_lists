@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe SocialNetwork do
+describe SocialNetworks::SocialNetwork do
   describe 'Validations' do
     it { is_expected.to validate_presence_of :name }
   end
@@ -12,7 +12,7 @@ describe SocialNetwork do
 
   describe '#new' do
     it 'should create a new social network' do
-      social_network = SocialNetwork.new(name: 'Facebook')
+      social_network = SocialNetworks::SocialNetwork.new(name: 'Facebook')
 
       social_network.save
 
@@ -23,15 +23,15 @@ describe SocialNetwork do
 
   describe '#people' do
     it 'should return the people' do
-      person = Person.new(first_name: 'John', last_name: 'Doe')
+      person = SocialNetworks::Person.new(first_name: 'John', last_name: 'Doe')
       person.save
 
-      social_network = SocialNetwork.new(name: 'Facebook')
+      social_network = SocialNetworks::SocialNetwork.new(name: 'Facebook')
       social_network.save
 
-      person_social_network = PeopleSocialNetwork.new(person: person,
-                                                      social_network: social_network,
-                                                      person_social_network_id: 'JohnDoe')
+      person_social_network = SocialNetworks::PeopleSocialNetwork.new(person: person,
+                                                                      social_network: social_network,
+                                                                      person_social_network_id: 'JohnDoe')
 
       person_social_network.save!
 

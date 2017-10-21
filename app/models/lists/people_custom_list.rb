@@ -1,6 +1,6 @@
 module Lists
   class PeopleCustomList < ActiveRecord::Base
-    belongs_to :person,      class_name: 'Person'
+    belongs_to :person,      class_name: 'SocialNetworks::Person'
     belongs_to :custom_list, class_name: 'Lists::CustomList'
 
     validates :person,      presence: true

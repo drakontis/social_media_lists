@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe PeopleSocialNetwork do
+describe SocialNetworks::PeopleSocialNetwork do
   describe 'Validations' do
     it { is_expected.to validate_presence_of :person                   }
     it { is_expected.to validate_presence_of :social_network           }
@@ -14,23 +14,23 @@ describe PeopleSocialNetwork do
 
   describe '#new' do
     it 'should create a new person_social_network' do
-      person = Person.new(first_name: 'John', last_name: 'Doe')
-      social_network = SocialNetwork.new(name: 'Facebook')
-      person_social_network = PeopleSocialNetwork.new(person: person,
-                                                      social_network: social_network,
-                                                      person_social_network_id: 'JohnDoe')
+      person = SocialNetworks::Person.new(first_name: 'John', last_name: 'Doe')
+      social_network = SocialNetworks::SocialNetwork.new(name: 'Facebook')
+      person_social_network = SocialNetworks::PeopleSocialNetwork.new(person: person,
+                                                                      social_network: social_network,
+                                                                      person_social_network_id: 'JohnDoe')
 
       expect do
         expect do
           person_social_network.save
-        end.to change{ PeopleSocialNetwork.count }.by 1
-      end.to change{ Person.count }.by 1
+        end.to change{ SocialNetworks::PeopleSocialNetwork.count }.by 1
+      end.to change{ SocialNetworks::Person.count }.by 1
 
-      person = Person.last
+      person = SocialNetworks::Person.last
       expect(person.first_name).to eq 'John'
       expect(person.last_name).to eq 'Doe'
 
-      person_social_network = PeopleSocialNetwork.last
+      person_social_network = SocialNetworks::PeopleSocialNetwork.last
       expect(person_social_network.person).to eq person
       expect(person_social_network.social_network).to eq social_network
       expect(person_social_network.person_social_network_id).to eq 'JohnDoe'

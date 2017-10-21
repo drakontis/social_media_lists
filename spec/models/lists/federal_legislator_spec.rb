@@ -11,7 +11,7 @@ describe Lists::FederalLegislator do
 
   describe '#new' do
     it 'should create a new federal legislator' do
-      person = Person.new(first_name: 'John', last_name: 'Doe')
+      person = SocialNetworks::Person.new(first_name: 'John', last_name: 'Doe')
       person.save
 
       federal_legislator = Lists::FederalLegislator.new(person: person)

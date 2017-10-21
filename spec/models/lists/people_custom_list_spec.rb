@@ -16,7 +16,7 @@ describe Lists::PeopleCustomList do
       custom_list = Lists::CustomList.new(name: 'state governors')
       custom_list.save!
 
-      person = Person.new(first_name: 'John', last_name: 'Doe')
+      person = SocialNetworks::Person.new(first_name: 'John', last_name: 'Doe')
       person.save!
 
       people_custom_list = Lists::PeopleCustomList.new(custom_list: custom_list,
