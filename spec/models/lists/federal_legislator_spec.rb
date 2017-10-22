@@ -24,7 +24,7 @@ describe Lists::FederalLegislator do
       person = SocialNetworks::Person.new(first_name: 'John', last_name: 'Doe')
       person.save
 
-      federal_legislator = Lists::FederalLegislator.new(person: person)
+      federal_legislator = Lists::DatabaseLists::FederalLegislator.new(person: person)
       federal_legislator.save
 
       expect(federal_legislator).to be_persisted
@@ -35,7 +35,7 @@ describe Lists::FederalLegislator do
   describe '#first_name' do
     it 'should return the first name of the person' do
       person = SocialNetworks::Person.new(first_name: 'John', last_name: 'Doe')
-      federal_legislator = Lists::FederalLegislator.new(person: person)
+      federal_legislator = Lists::DatabaseLists::FederalLegislator.new(person: person)
 
       expect(federal_legislator.first_name).to eq person.first_name
     end
@@ -44,7 +44,7 @@ describe Lists::FederalLegislator do
   describe '#last_name' do
     it 'should return the last name of the person' do
       person = SocialNetworks::Person.new(first_name: 'John', last_name: 'Doe')
-      federal_legislator = Lists::FederalLegislator.new(person: person)
+      federal_legislator = Lists::DatabaseLists::FederalLegislator.new(person: person)
 
       expect(federal_legislator.last_name).to eq person.last_name
     end
@@ -59,7 +59,7 @@ describe Lists::FederalLegislator do
                                                                         social_network: social_network,
                                                                         person_social_network_id: 'JohnDoe')
         people_social_network.save!
-        federal_legislator = Lists::FederalLegislator.new(person: person)
+        federal_legislator = Lists::DatabaseLists::FederalLegislator.new(person: person)
 
         expect(federal_legislator.facebook_id).to eq people_social_network.person_social_network_id
       end
@@ -68,7 +68,7 @@ describe Lists::FederalLegislator do
     context 'without facebook' do
       it 'should return nil' do
         person = SocialNetworks::Person.new(first_name: 'John', last_name: 'Doe')
-        federal_legislator = Lists::FederalLegislator.new(person: person)
+        federal_legislator = Lists::DatabaseLists::FederalLegislator.new(person: person)
 
         expect(federal_legislator.facebook_id).to be_nil
       end
@@ -84,7 +84,7 @@ describe Lists::FederalLegislator do
                                                                         social_network: social_network,
                                                                         person_social_network_id: 'JohnDoe')
         people_social_network.save!
-        federal_legislator = Lists::FederalLegislator.new(person: person)
+        federal_legislator = Lists::DatabaseLists::FederalLegislator.new(person: person)
 
         expect(federal_legislator.twitter_username).to eq people_social_network.person_social_network_id
       end
@@ -93,7 +93,7 @@ describe Lists::FederalLegislator do
     context 'without twitter' do
       it 'should return nil' do
         person = SocialNetworks::Person.new(first_name: 'John', last_name: 'Doe')
-        federal_legislator = Lists::FederalLegislator.new(person: person)
+        federal_legislator = Lists::DatabaseLists::FederalLegislator.new(person: person)
 
         expect(federal_legislator.twitter_username).to be_nil
       end

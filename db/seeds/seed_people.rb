@@ -29,7 +29,7 @@ number_of_people.times do |index|
   end
 
   if rand(1..1000) == 1000
-    person.federal_legislators = Lists::FederalLegislator.new
+    person.federal_legislators = Lists::DatabaseLists::FederalLegislator.new
   end
 
   person.save!
