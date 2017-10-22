@@ -10,7 +10,7 @@
 
 require 'rails_helper'
 
-describe Lists::FederalLegislator do
+describe Lists::DatabaseLists::FederalLegislator do
   describe 'Validations' do
     it { is_expected.to validate_presence_of :person }
   end

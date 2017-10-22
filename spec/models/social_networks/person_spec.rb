@@ -89,4 +89,12 @@ describe SocialNetworks::Person do
       expect(person.social_network('Facebook')).to eq people_social_network
     end
   end
+
+  describe '#name' do
+    it 'should return the full name' do
+      person = SocialNetworks::Person.new(first_name: 'John', last_name: 'Doe')
+
+      expect(person.name).to eq 'John Doe'
+    end
+  end
 end
