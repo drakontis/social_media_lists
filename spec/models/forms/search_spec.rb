@@ -147,10 +147,22 @@ describe Forms::Search do
     end
 
     it 'should search by custom list, database list, from date, to date and social network' do
-      search = Forms::Search.new(lists: ['CustomList1', 'Federal Legislators'],
-                                  social_networks: ['Twitter'],
-                                  from_date: '25/10/2017',
-                                  to_date: '24/10/2017')
+      search = Forms::Search.new(lists: ['CustomList2', 'Federal Legislators'],
+                                  social_networks: ['Twitter', 'Facebook'],
+                                  from_date: '22/10/2017',
+                                  to_date: '25/10/2017')
+      result = search.search
+
+      expect(result.count).to eq 2
+      expect(result).to include @post1
+      expect(result).to include @post3
+
+      expect(result).not_to include @post2
+      expect(result).not_to include @post4
+    end
+
+    it 'should search by database list' do
+      search = Forms::Search.new(lists: ['Federal Legislators'])
       result = search.search
 
       expect(result.count).to eq 2

@@ -174,14 +174,30 @@ describe PostsController, :type => :controller do
   end
 
   it 'should search by custom list, database list, from date, to date and social network' do
-    get :index, {forms_search: {lists: ['CustomList1', 'Federal Legislators'],
-                                social_networks: ['Twitter'],
-                                from_date: '25/10/2017',
-                                to_date: '24/10/2017'}}
+    get :index, {forms_search: {lists: ['CustomList2', 'Federal Legislators'],
+                                social_networks: ['Twitter', 'Facebook'],
+                                from_date: '22/10/2017',
+                                to_date: '25/10/2017'}}
 
     assigned_posts = assigns(:posts)
     expect(response.status).to eq 200
     expect(response).to render_template 'index'
+
+    expect(assigned_posts.count).to eq 2
+    expect(assigned_posts).to include @post1
+    expect(assigned_posts).to include @post3
+
+    expect(assigned_posts).not_to include @post2
+    expect(assigned_posts).not_to include @post4
+  end
+
+  it 'should search by database list' do
+    get :index, {forms_search: {lists: ['Federal Legislators']}}
+
+    expect(response.status).to eq 200
+    expect(response).to render_template 'index'
+
+    assigned_posts = assigns(:posts)
 
     expect(assigned_posts.count).to eq 2
     expect(assigned_posts).to include @post3
