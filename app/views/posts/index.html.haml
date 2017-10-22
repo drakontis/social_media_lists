@@ -1,0 +1,36 @@
+= form_for @search, url: posts_path, method: :get, html: {class: 'form-inline'} do |f|
+
+  .form-group
+    %label{'for' => "forms_search_lists"} Lists
+    = f.select :lists, options_for_select(@search.applicable_lists), {}, {class: 'form-control chosen-select', multiple: true}
+
+  .form-group
+    %label{'for' => "forms_search_social_networks"} Social Networks
+    = f.select :social_networks, options_for_select(SocialNetworks::SocialNetwork.all.map(&:name)), {}, {class: 'form-control chosen-select', multiple: true}
+
+  .form-group
+    %label{'for' => "forms_search_social_from_date"} From Date
+    = f.text_field :from_date, class: 'form-control datepicker'
+
+  .form-group
+    %label{'for' => "forms_search_social_to_date"} To Date
+    = f.text_field :to_date, class: 'form-control datepicker'
+
+  = f.submit 'Search', class: 'btn btn-primary'
+
+%table.table.table-striped
+  %thead
+    %th #
+    %th Author Name
+    %th Posted At
+    %th Body
+    %th Social Network
+
+  %tbody
+    - @posts.each_with_index do |post, index|
+      %tr
+        %td= index
+        %td= post.person.name
+        %td= post.posted_at.strftime("%d/%b/%Y (%H:%M)")
+        %td= post.body
+        %td NotImplemented
