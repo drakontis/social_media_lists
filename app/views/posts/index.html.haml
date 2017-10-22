@@ -28,8 +28,10 @@
   %tbody
     - @posts.each_with_index do |post, index|
       %tr
-        %td= index
+        %td= index+1
         %td= post.person.name
         %td= post.posted_at.strftime("%d/%b/%Y (%H:%M)")
         %td= post.body
         %td= post.social_network.name
+
+= paginate @posts
