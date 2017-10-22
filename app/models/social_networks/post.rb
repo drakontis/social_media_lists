@@ -12,7 +12,8 @@
 
 module SocialNetworks
   class Post < ActiveRecord::Base
-    belongs_to :person, class_name: 'SocialNetworks::Person'
+    belongs_to :person,         class_name: 'SocialNetworks::Person'
+    belongs_to :social_network, class_name: 'SocialNetworks::SocialNetwork'
 
     validates :person,    presence: true
     validates :body,      presence: true

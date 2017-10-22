@@ -18,6 +18,7 @@ describe SocialNetworks::SocialNetwork do
   describe 'Associations' do
     it { is_expected.to have_many :people_social_networks }
     it { is_expected.to have_many :people                 }
+    it { is_expected.to have_many :posts                  }
   end
 
   describe '#new' do

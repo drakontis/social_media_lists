@@ -12,6 +12,7 @@ module SocialNetworks
   class SocialNetwork < ActiveRecord::Base
     has_many :people_social_networks, class_name: 'SocialNetworks::PeopleSocialNetwork', dependent: :destroy
     has_many :people,                 class_name: 'SocialNetworks::Person', through: :people_social_networks
+    has_many :posts,                  class_name: 'SocialNetworks::Post'
 
     validates :name, presence: true, uniqueness: true
   end

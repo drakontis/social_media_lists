@@ -63,14 +63,16 @@ ActiveRecord::Schema.define(version: 20171021175746) do
   add_index "people_social_networks", ["social_network_id"], name: "people_social_networks_social_network_idx", using: :btree
 
   create_table "posts", force: :cascade do |t|
-    t.integer  "person_id",  null: false
-    t.text     "body",       null: false
-    t.datetime "posted_at",  null: false
+    t.integer  "person_id",         null: false
+    t.text     "body",              null: false
+    t.datetime "posted_at",         null: false
+    t.integer  "social_network_id", null: false
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
   add_index "posts", ["person_id"], name: "posts_person_idx", using: :btree
+  add_index "posts", ["social_network_id"], name: "posts_social_network_idx", using: :btree
 
   create_table "social_networks", force: :cascade do |t|
     t.string   "name",       null: false
@@ -86,4 +88,5 @@ ActiveRecord::Schema.define(version: 20171021175746) do
   add_foreign_key "people_social_networks", "people", name: "people_social_networks_person_id_fk"
   add_foreign_key "people_social_networks", "social_networks", name: "people_social_networks_social_network_id_fk"
   add_foreign_key "posts", "people", name: "posts_person_id_fk"
+  add_foreign_key "posts", "social_networks", name: "posts_social_network_id_fk"
 end
