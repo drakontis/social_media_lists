@@ -71,4 +71,22 @@ describe SocialNetworks::Person do
       expect(person.custom_lists).to include custom_list
     end
   end
+
+  describe '#social_network' do
+    it 'should return the people_social_network' do
+      person = SocialNetworks::Person.new(first_name: 'John', last_name: 'Doe')
+      person.save
+
+      social_network = SocialNetworks::SocialNetwork.new(name: 'Facebook')
+      social_network.save
+
+      people_social_network = SocialNetworks::PeopleSocialNetwork.new(person: person,
+                                                                      social_network: social_network,
+                                                                      person_social_network_id: 'JohnDoe')
+
+      people_social_network.save!
+
+      expect(person.social_network('Facebook')).to eq people_social_network
+    end
+  end
 end

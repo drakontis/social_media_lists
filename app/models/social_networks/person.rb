@@ -20,5 +20,9 @@ module SocialNetworks
 
     validates :first_name, presence: true
     validates :last_name,  presence: true
+
+    def social_network(social_network_name)
+      people_social_networks.select{ |people_social_network| people_social_network.social_network.name == social_network_name }.first
+    end
   end
 end
