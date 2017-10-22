@@ -20,7 +20,7 @@ describe SocialNetworks::Person do
   describe 'Associations' do
     it { is_expected.to have_many :people_social_networks }
     it { is_expected.to have_many :social_networks        }
-    it { is_expected.to have_one  :federal_legislators    }
+    it { is_expected.to have_one  :federal_legislator     }
     it { is_expected.to have_many :people_custom_lists    }
     it { is_expected.to have_many :custom_lists           }
     it { is_expected.to have_many :posts                  }
