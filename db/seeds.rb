@@ -5,3 +5,10 @@
 #
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
+
+$: << "#{Rails.root}/db/seeds"
+
+load 'seed_social_networks.rb'
+load 'seed_custom_lists.rb'
+load 'seed_people.rb'
+load 'seeds_posts.rb'
